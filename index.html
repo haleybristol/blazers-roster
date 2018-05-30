@@ -1,0 +1,347 @@
+<head>
+  <script src="https://use.fontawesome.com/1fe341c2db.js"></script>
+  <script src="https://www.nba.com/scout/team/cvp/videoPlayerScout.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<html>
+<body>
+  <div class="button dropdown players">
+    <select id="player-select">
+      <option>
+        </h3>Select A Player</h3>
+      </option>
+      <option value="202329">Al-Farouq Aminu</option>
+      <option value="1627735">Wade Baldwin IV</option>
+      <option value="1628380">Zach Collins</option>
+      <option value="1626192">Pat Connaughton</option>
+      <option value="202334">Ed Davis</option>
+      <option value="203090">Maurice Harkless</option>
+      <option value="1627774">Jake Layman</option>
+      <option value="203086">Meyers Leonard</option>
+      <option value="203081">Damian Lillard</option>
+      <option value="203468">CJ McCollum</option>
+      <option value="203894">Shabazz Napier</option>
+      <option value="203994">Jusuf Nurkic</option>
+      <option value="1627834">Georgios Papagiannis</option>
+      <option value="1628403">Caleb Swanigan</option>
+      <option value="202323">Evan Turner</option>
+      <option value="203912">CJ Wilcox</option>
+    </select>
+  </div>
+  <header id="player">
+    <div id="headshot-container">
+      <img class="img-responsive stripes" src="http://i.cdn.turner.com/drp/nba/blazers/sites/default/files/stripes_0.png">
+      <img class="img-responsive headshot" src="http://i.cdn.turner.com/drp/nba/blazers/sites/default/files/player-placeholder.png">
+    </div>
+    <div id="name-container">
+      <h2 id="player-name"></h2>
+    </div>
+    <div id="info">
+      <div class="player-info-a">
+        <h3 class="position"></h3>
+        <h3 id="birthdate"></h3>
+        <h3 id="drafted"></h3>
+        <h3 id="college"></h3>
+      </div>
+      <div class="player-info-b">
+        <h3 id="ht"></h3>
+        <h3 id="wt"></h3>
+      </div>
+    </div>
+  </header>
+  <div class="career-stats-guard">
+    <table class="average-labels">
+      <th>
+        <td>
+          <h3 class="min">MPG</h3>
+        </td>
+        <td>
+          <h3 class="pts">PPG</h3>
+        </td>
+        <td>
+          <h3 class="fgp">FG%</h3>
+        </td>
+        <td>
+          <h3 class="tpp">3PT%</h3>
+        </td>
+        <td>
+          <h3 class="ftp">FT%</h3>
+        </td>
+        <td>
+          <h3 class="reb">RPG</h3>
+        </td>
+        <td>
+          <h3 class="ast">APG</h3>
+        </td>
+      </th>
+      <tr>
+        <td>
+          <h3>2017-18</h3>
+        </td>
+        <td>
+          <h3 class="min-guard"></h3>
+        </td>
+        <td>
+          <h3 class="pts-guard"></h3>
+        </td>
+        <td>
+          <h3 class="fgp-guard"></h3>
+        </td>
+        <td>
+          <h3 class="tpp-guard"></h3>
+        </td>
+        <td>
+          <h3 class="ftp-guard"></h3>
+        </td>
+        <td>
+          <h3 class="reb-guard"></h3>
+        </td>
+        <td>
+          <h3 class="blk-guard"></h3>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="tabs-horizontal">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link" id="bio-tab" href="#bioTab" data-toggle="tab" role="tab" aria-controls="bioTab" aria-selected="true">BIO&nbsp;<i class="fa fa-user" aria-hidden="true"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="stats-tab" href="#statsTab" data-toggle="tab" role="tab" aria-controls="statsTab" aria-selected="false">STATS&nbsp;<i class="fa fa-area-chart" aria-hidden="true"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="photo-tab" href="#photoTab" data-toggle="tab" role="tab" aria-controls="photoTab" aria-selected="false">PHOTO&nbsp;<i class="fa fa-camera-retro" aria-hidden="true"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="video-tab" href="#videoTab" data-toggle="tab" role="tab" aria-controls="videoTab" aria-selected="false">VIDEO&nbsp;<i class="fa fa-video-camera" aria-hidden="true"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="news-tab" href="#newsTab" data-toggle="tab" role="tab" aria-controls="newsTab" aria-selected="false">NEWS&nbsp;<i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane" id="bioTab" aria-labelledby="bio-tab">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+          <div>
+            <h2>HIGHLIGHTS</h2>
+            <hr>
+            <ul id="highlights"></ul>
+          </div>
+          <h2>NBA CAREER TIMELINE</h2>
+          <hr>
+          <div id="jersey-container">
+            <div id="jersies"></div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <img id="action-image">
+        </div>
+      </div>
+      <div id="career-timeline"></div>
+      <div class="row" style="clear: both;">
+        <div class="col-xs-12 col-sm-6">
+          <h2 class="font-22">CAREER HIGHS</h2>
+          <hr>
+          <div id="highs"></div>
+        </div>
+        <div class="col-xs-12 col-sm-6" id="social-section">
+          <h2 class="font-22">FOLLOW</h2>
+          <hr>
+          <div class="social-media">
+            <div id="twitter"></div>
+            <div id="twitter-handle"></div>
+          </div>
+          <div class="social-media">
+            <div id="instagram"></div>
+            <div id="instagram-handle"></div>
+          </div>
+        </div>
+      </div>
+      <div class="question">
+        <h2>Q &amp; A</h2>
+        <hr>
+        <div class="panel-group" id="accordion" aria-multiselectable="true" style="margin-top:30px">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                    <a id="q1" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    </a>
+                  </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div id="a1" class="panel-body">
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tabpanel" id="headingTwo">
+              <h4 class="panel-title">
+                    <a id="q2" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    </a>
+                  </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div id="a2" class="panel-body">
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+              <h4 class="panel-title">
+                    <a id="q3" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    </a>
+                  </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+              <div id="a3" class="panel-body">
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFour">
+              <h4 class="panel-title">
+                    <a id="q4" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    </a>
+                  </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+              <div id="a4" class="panel-body">
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFive">
+              <h4 class="panel-title">
+                    <a id="q5" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    </a>
+                  </h4>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+              <div id="a5" class="panel-body">
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingSix">
+              <h4 class="panel-title">
+                    <a id="q6" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    </a>
+                  </h4>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+              <div id="a6" class="panel-body">
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingSeven">
+              <h4 class="panel-title">
+                    <a id="q7" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    </a>
+                  </h4>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+              <div id="a7" class="panel-body">
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingEight">
+              <h4 class="panel-title">
+                    <a id="q8" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    </a>
+                  </h4>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+              <div id="a8" class="panel-body">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end bio tab-->
+    <div class="tab-pane" id="statsTab" aria-labelledby="stats-tab">
+      <div class="button dropdown">
+        <select id="stats-select">
+          <option value="total">Total</option>
+          <option value="average">Average</option>
+        </select>
+      </div>
+      <div style="overflow-x:auto">
+        <table id="regular-season-total">
+          <thead class="stats-header">
+            <tr role="row" class="stats-header-row">
+              <th>
+                <div>SEASON</div>
+              </th>
+              <th>
+                <div>TEAM</div>
+              </th>
+              <th>
+                <div>GP</div>
+              </th>
+              <th>
+                <div>MIN</div>
+              </th>
+              <th>
+                <div>PTS</div>
+              </th>
+              <th>
+                <div>FGM</div>
+              </th>
+              <th>
+                <div>3PM</div>
+              </th>
+              <th>
+                <div>FTM</div>
+              </th>
+              <th>
+                <div>REB</div>
+              </th>
+              <th>
+                <div>AST</div>
+              </th>
+              <th>
+                <div>STL</div>
+              </th>
+              <th>
+                <div>BLK</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="total-stats">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane" id="photoTab" aria-labelledby="photo-tab">
+      <div class="row" id="photoContainer">
+      </div>
+      <div id="load-videos" class="text-center"><a id="load-more-photos" class="btn btn-primary btn-sm trueCenter" role="button">LOAD MORE</a></div>
+    </div>
+    <div class="tab-pane" id="videoTab" aria-labelledby="video-tab">
+      <div id="video-title"></div>
+      <div id="video-playing">
+        <div id="video-wrapper"></div>
+      </div>
+      <div class="video-grid"></div>
+      <div id="load-videos" class="text-center"><a id="load-more" class="btn btn-primary btn-sm trueCenter" role="button">LOAD MORE</a></div>
+    </div>
+    <div class="tab-pane" id="newsTab" aria-labelledby="news-tab">
+      <div id="render-news"></div>
+      <div id="load-videos" class="text-center"><a id="load-more-news" class="btn btn-primary btn-sm trueCenter" role="button">LOAD MORE</a></div>
+    </div>
+  </div>
+</body>

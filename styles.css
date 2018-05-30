@@ -1,0 +1,760 @@
+{
+  box-sizing: border-box;
+}
+
+.dropdown {
+  position: relative;
+  display: block;
+  margin-top: 0.5em;
+  padding: 0;
+}
+
+/* This is the native select, we're making everything the text invisible so we can see the button styles in the wrapper */
+
+.dropdown select {
+  width: 100%;
+  margin: 0;
+  background: none;
+  border: 1px solid transparent;
+  outline: none;
+  /* Prefixed box-sizing rules necessary for older browsers */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* Remove select styling */
+  appearance: none;
+  -webkit-appearance: none;
+  /* Magic font size number to prevent iOS text zoom */
+  font-size: 1.25em;
+  /* General select styles: change as needed */
+  /* font-weight: bold; */
+  color: #444;
+  padding: .6em 1.9em .5em .8em;
+  line-height: 1.3;
+}
+
+/* Custom arrow sits on top of the select - could be an image, SVG, icon font, etc. or the arrow could just baked into the bg image on the select */
+
+.dropdown::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 8px;
+  top: 50%;
+  right: 1em;
+  margin-top: -4px;
+  z-index: 2;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'%3E%3Cpolygon fill='rgb(102,102,102)' points='8,12 0,0 16,0'/%3E%3C/svg%3E") 0 0 no-repeat;
+  /* These hacks make the select behind the arrow clickable in some browsers */
+  pointer-events: none;
+}
+
+
+/* This hides native dropdown button arrow in IE 10/11+ so it will have the custom appearance, IE 9 and earlier get a native select */
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+  .dropdown select::-ms-expand {
+    display: none;
+  }
+  /* Removes the odd blue bg color behind the text in IE 10/11 and sets the text to match the focus style text */
+  select:focus::-ms-value {
+    background: transparent;
+    color: #222;
+  }
+}
+
+/* Firefox >= 2 -- Older versions of FF (v2 - 6) won't let us hide the native select arrow, so we'll just hide the custom icon and go with native styling */
+
+
+/* Show only the native arrow */
+
+body:last-child .dropdown::after,
+x:-moz-any-link {
+  display: none;
+}
+
+
+/* reduce padding */
+
+body:last-child .dropdown select,
+x:-moz-any-link {
+  padding-right: .8em;
+}
+
+/* Firefox 7+ -- Will let us hide the arrow, but inconsistently (see FF 30 comment below). We've found the simplest way to hide the native styling in FF is to make the select bigger than its container. */
+
+
+/* The specific FF selector used below successfully overrides the previous rule that turns off the custom icon; other FF hacky selectors we tried, like `*>.dropdown::after`, did not undo the previous rule */
+
+
+/* Set overflow:hidden on the wrapper to clip the native select's arrow, this clips hte outline too so focus styles are less than ideal in FF */
+
+_::-moz-progress-bar,
+body:last-child .dropdown {
+  overflow: hidden;
+}
+
+/* Show only the custom icon */
+
+_::-moz-progress-bar,
+body:last-child .dropdown:after {
+  display: block;
+}
+
+_::-moz-progress-bar,
+body:last-child .dropdown select {
+  /* increase padding to make room for menu icon */
+  padding-right: 1.9em;
+  /* `window` appearance with these text-indent and text-overflow values will hide the arrow FF up to v30 */
+  -moz-appearance: window;
+  text-indent: 0.01px;
+  text-overflow: "";
+  /* for FF 30+ on Windows 8, we need to make the select a bit longer to hide the native arrow */
+  width: 110%;
+}
+
+/* Firefox 7+ focus style - This works around the issue that -moz-appearance: window kills the normal select focus. Using semi-opaque because outline doesn't handle rounded corners */
+
+_::-moz-progress-bar,
+body:last-child .dropdown select:focus {
+  outline: 2px solid rgba(180, 222, 250, .7);
+}
+
+
+/* Opera - Pre-Blink nix the custom arrow, go with a native select button */
+
+x:-o-prefocus,
+.dropdown::after {
+  display: none;
+}
+
+/* Hover style */
+
+.dropdown:hover {
+  border: 1px solid #888;
+}
+
+]
+/* Focus style */
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 1px 3px rgba(180, 222, 250, 1);
+  background-color: transparent;
+  color: #222;
+  border: 1px solid #aaa;
+}
+
+
+/* Firefox focus has odd artifacts around the text, this kills that */
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+option {
+  font-weight: normal;
+}
+
+/* Select dropdown Styles */
+
+.button {
+  border: 1px solid #bbb;
+  border-radius: .3em;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04);
+  background: #f3f3f3;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #e5e5e5));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  /* W3C */
+}
+
+.output {
+  margin: 0 auto;
+  padding: 1em;
+}
+
+a {
+  color: #c04;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #903;
+  text-decoration: underline;
+}
+
+.panel-display {
+  padding: 0px !important;
+}
+
+
+/*#question {
+  margin-top: 40px;
+  max-height: 450px;
+}*/
+
+img#action-image {
+  max-width: 300px;
+  padding-right: 20px;
+  margin-top: -32px;
+}
+
+.profile .row {
+  margin: 0px !important;
+}
+
+
+
+
+
+
+
+
+
+/* end dropdown *****************************************************************/
+
+html,
+body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+h3 {
+  font-size: 18px !important;
+  margin: 7px 0;
+  text-transform: capitalize;
+}
+
+.container {
+  margin: auto;
+}
+
+.panel-display {
+  padding: 0px !important;
+}
+
+.button.dropdown.players {
+  display: none !important;
+}
+
+.font-22 {
+  font-size: 22px !important;
+}
+
+hr {
+  margin-top: 0 !important;
+}
+
+
+
+
+
+
+
+
+
+/* Small devices (tablets, 768px and up) *****************************************/
+
+@media (max-width: 768px) {
+
+  table.roster {
+    display: none;
+  }
+
+  .fa-user {
+    width: 45px !important;
+  }
+
+  .brenham-flipped-content {
+    width: 100%;
+  }
+
+  #headshot-container:after {
+    width: 0 !important;
+    border-top: 0 !important;
+  }
+
+  .headshot {
+    height: 110px !important;
+  }
+
+  #player-number {
+    position: absolute !important;
+    left: 20px !important;
+  }
+
+  .button.dropdown.players {
+    display: block !important;
+  }
+
+  #jersies {
+    justify-content: space-around !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Medium devices (desktops, 992px and up) *****************************************/
+
+@media (max-width: 994px) {
+  img#action-image {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* TABLE STYLES ***************************************************************/
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 5px 0;
+}
+
+tbody tr:nth-child(even) {
+  background: #ECF0F1;
+}
+
+tbody tr:nth-child(odd) {
+  background: #FFF;
+}
+
+tbody {
+  border-top: 0px solid transparent;
+}
+
+a:focus {
+  background-color: #FAFAFA;
+  text-decoration: none !important;
+  outline-color: transparent !important;
+  color: #CC0000 !important;
+}
+
+.active>a {
+  color: #C8102E !important;
+}
+
+
+
+
+
+
+
+
+
+/* Header Style ***************************************************************/
+
+header#player {
+  height: 184px;
+  position: relative;
+}
+
+.headshot {
+  height: 170px;
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
+}
+
+#player-name h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1px;
+  padding-right: 20px;
+  color: #C8102E;
+  text-align: right;
+}
+
+#player-name {
+  margin-top: 13px;
+  padding-bottom: 12px;
+}
+
+.player-info-a,
+.player-info-b {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.position {
+  margin-top: 8px;
+}
+
+h2#number {
+  flex: 2;
+}
+
+h2:empty {
+  display: none;
+}
+
+#ht-wt {
+  display: flex;
+}
+
+#first-name {
+  font-size: 32px !important;
+}
+
+#headshot-container:after {
+  width: 370px;
+  border-right: 50px solid transparent;
+  position: absolute;
+  right: 52.3%;
+  content: '';
+  top: 0;
+  z-index: 3;
+  border-top: 184px solid #282828;
+}
+
+#info {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  width: 100%;
+}
+
+#headshot-container {
+  height: 184px;
+}
+
+#name-container {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  top: 0;
+}
+
+#player-number {
+  background: #c8102e;
+  color: white;
+  padding: 2px 13px;
+}
+
+.gray {
+  color: gray;
+}
+
+
+
+
+
+
+
+/*End Header styles ***************************************************************/
+
+
+/* NAVIGATION TABS  ***************************************************************/
+
+#myTab {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  margin-bottom: 30px;
+}
+
+.nav-tabs {
+  border-bottom: 0px !important;
+}
+
+.nav-tabs>li {
+  width: 100%;
+  text-align: center;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+  background: #fafafa !important;
+  border-top: 3px solid #C8102E !important;
+}
+
+.nav-tabs>li>a {
+  border-radius: 0px !important;
+  margin-right: 0px !important;
+  border: 0px !important;
+  padding: 15px !important;
+  margin-bottom: -2px !important;
+}
+
+.nav-tabs>li>a:hover {
+  border-color: transparent !important;
+}
+
+.tab-content {
+  padding: 0 10px;
+}
+
+/* ROSTER TABLE ***************************************************************/
+
+table.roster {
+  border: 1px solid #cbcbcb;
+  width: 320px;
+}
+
+#total-stats td {
+  border: 1px solid gray;
+}
+
+table.roster tr th {
+  background: #C8102E;
+  color: white !important;
+  text-align: left;
+  padding-left: 10px;
+}
+
+table.roster tr.active {
+  color: #C8102E;
+  background-color: #ebeaec;
+}
+
+.roster tr td:nth-child(2) {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.roster tr td:nth-child(3) {
+  font-size: bold;
+}
+
+.roster tr:hover td {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: lightgray !important;
+}
+
+.stats-header {
+  background: #c8102e;
+}
+
+.stats-header-row th {
+  color: white;
+}
+
+#regular-season-total {
+  margin-top: 10px;
+}
+
+
+/* BIO SECTION ***************************************************************/
+
+.social-media {
+  display: flex;
+}
+
+.social-media p {
+  margin-left: 5px;
+}
+
+.jersey {
+  max-width: 80px;
+}
+
+.years {
+  margin-right: 20px;
+}
+
+.years-played {
+  text-align: center;
+  font-size: 18px !important;
+  margin-top: 5px !important;
+}
+
+#jersey-container {
+  width: 100%;
+}
+
+#jersies {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 14px;
+}
+
+
+/* PHOTO & NEWS ***************************************************************/
+
+.background-thumbnail {
+  height: 200px;
+  position: relative;
+  background-size: cover;
+  border: 1px solid #cbcbcb;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #C8102E;
+}
+
+.background-thumbnail-photo {
+  height: 240px;
+  position: relative;
+  background-size: cover;
+  border: 1px solid #cbcbcb;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #C8102E;
+}
+
+.background-thumbnail h3,
+.background-thumbnail-photo h3 {
+  background-color: rgba(0, 0, 0, .7);
+  padding: 10px;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+  color: white;
+  margin: 0;
+}
+
+
+/*video player ***************************************************************/
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 15px;
+  margin-bottom: 10px;
+}
+
+.grid-item {
+  height: 260px;
+}
+
+.video-thumb {
+  position: relative;
+  height: 80%;
+  background-size: cover;
+}
+
+.vid-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+  background: #202020;
+  color: white;
+  margin: 0 !important;
+  padding: 8px 0 7px 7px;
+  border-top: 1px solid #c8102e;
+}
+
+.grid-item .play-logo {
+  opacity: .6;
+  position: absolute;
+  width: 30px;
+  top: 40%;
+  left: 45%;
+}
+
+.grid-item:hover .play-logo {
+  opacity: 1;
+}
+
+.vid-title:hover {
+  white-space: normal;
+  overflow: visible;
+}
+
+.video-thumb.clicked-index {
+  border: 3px solid #C8102E;
+}
+
+.video-thumb.clicked-index p strong {
+  position: absolute;
+  top: 36%;
+  left: 14%;
+  color: white;
+  font-size: 20px;
+}
+
+.grid-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#video-title h2 {
+  text-transform: capitalize;
+  font-size: 24px;
+}
+
+#video-playing {
+  margin-bottom: 20px;
+}
+
+.stripes {
+  position: absolute;
+  z-index: 6;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+}
+
+.nbaCvpWrapper {
+  border: 2px solid #dddddd;
+}
+
+.high-number {
+  width: 80px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.points {
+  float: left;
+  width: 20%;
+}
+
+.rebounds {
+  float: left;
+  width: 20%;
+  clear: both;
+}
+
+.assists {
+  float: left;
+  clear: both;
+  width: 20%;
+}
+
+.gray {
+  float: none;
+  width: 80%;
+}
